@@ -3,7 +3,8 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 <img width="2559" height="1439" alt="image" src="https://github.com/user-attachments/assets/e0084363-7563-4714-bf5c-14c12a88238b" />
-[Watch Demo](https://www.youtube.com/watch?=w3XfOwjRJBs)
+
+[Watch Demo](https://www.youtube.com/watch?v=w3XfOwjRJBs)
 
 ## Overview
 
