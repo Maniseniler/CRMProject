@@ -81,12 +81,10 @@ composer install
   Edit /config/db.php with your MySQL credentials.
   Import the provided SQL schema into your database.
 
-4.** Set up Gmail API**
+4. **Set up Gmail API**
   Create a project in Google Cloud Console.
   Enable Gmail API and generate OAuth2 credentials.
   Configure /gmail/auth.php and /gmail/callback.php with client ID and secret.
 
-5.**Start Local AI Server**
+5. **Start Local AI Server**
   ollama serve qwen2.5
-
-6.**Run Cloudflare Tunnel**
