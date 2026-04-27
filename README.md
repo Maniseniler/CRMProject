@@ -89,6 +89,6 @@ composer install
   
 - Configure /gmail/auth.php and /gmail/callback.php with client ID and secret.
 
-6. **Start Local AI Server**
+5. **Start Local AI Server**
    
 - ollama serve qwen2.5
