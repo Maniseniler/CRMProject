@@ -23,12 +23,18 @@ if (isset($_POST['update_user'])) {
     $role_id    = trim($_POST['role_id'] ?? '');
 
     if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($role_id)) {
-        $db->updateUser($id, $first_name, $last_name, $email, $role_id);
+        if ($db->isEmailTakenByAnotherUser($email, $id)) {
+            $message = "Cet email est déjà utilisé pour un autre utilisateur.";
+        } else {
+            $db->updateUser($id, $first_name, $last_name, $email, $role_id);
 
-        if (!empty($password)) { $db->updatePassword($id,$password);}
+            if (!empty($password)) { 
+                $db->updatePassword($id, $password);
+            }
 
-        header("Location: /pages/roles/manage.php");
-        exit;
+            header("Location: /pages/roles/manage.php");
+            exit;
+        }
     } else {
         $message = "Veuillez remplir tous les champs obligatoires.";
     }
