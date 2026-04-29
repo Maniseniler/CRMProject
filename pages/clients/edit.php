@@ -5,7 +5,13 @@ require_once __DIR__ . "/../../config/db.php";
 $id = $_GET['id'] ?? null;
 if (!$id) {
     header("Location: index.php");
-	exit();
+    exit();
+}
+
+$client = $db->getClientById($id);
+if (!$client) {
+    header("Location: index.php");
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -17,17 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $address    = trim($_POST['address'] ?? '');
 
     if ($first_name && $last_name) {
-        $db->updateClient($id, $first_name, $last_name, $email, $phone, $address);
-        header("Location: index.php");
-        exit();
-    } else $message = "Veuillez remplir les champs obligatoires.";
+        $existingClient = $db->getClientByEmail($email);
+        if ($email && $existingClient && $existingClient['id'] != $id) {
+            $message = "Cet email est déjà utilisé pour un autre client.";
+        } else {
+            $db->updateClient($id, $first_name, $last_name, $email, $phone, $address);
+            header("Location: index.php");
+            exit();
+        }
+    } else {
+        $message = "Veuillez remplir les champs obligatoires.";
+    }
 }
 
-$client = $db->getClientById($id);
-if (!$client) {
-    header("Location: index.php");
-    exit();
-}
 $clientEmails = $db->getClientConversation($id);
 $clientTickets = $db->getTicketsByClient($id);
 ?>
