@@ -183,9 +183,9 @@ function tabClass($tab, $currentStatus) {
 
                         <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-md mb-6 bg-surface-container-lowest p-2 rounded-xl border border-outline-variant shadow-sm">
                             <div class="flex bg-surface-container rounded-lg p-1">
-                                <a href="?status=open" class="<?= tabClass('open', $currentStatus) ?>"><span class="w-2 h-2 rounded-full bg-primary"></span> Open <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['open'] ?? 0 ?></span></a>
-                                <a href="?status=claimed" class="<?= tabClass('claimed', $currentStatus) ?>">Claimed <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['claimed'] ?? 0 ?></span></a>
-                                <a href="?status=solved" class="<?= tabClass('solved', $currentStatus) ?>">Solved <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['solved'] ?? 0 ?></span></a>
+                                <a href="?id=<?= (int)$id ?>&tab=tickets&status=open" class="<?= tabClass('open', $currentStatus) ?>"><span class="w-2 h-2 rounded-full bg-primary"></span> Open <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['open'] ?? 0 ?></span></a>
+                                <a href="?id=<?= (int)$id ?>&tab=tickets&status=claimed" class="<?= tabClass('claimed', $currentStatus) ?>">Claimed <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['claimed'] ?? 0 ?></span></a>
+                                <a href="?id=<?= (int)$id ?>&tab=tickets&status=solved" class="<?= tabClass('solved', $currentStatus) ?>">Solved <span class="text-outline font-mono text-mono normal-case"><?= $statusCounts['solved'] ?? 0 ?></span></a>
                             </div>
                         </div>
 
