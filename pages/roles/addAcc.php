@@ -15,10 +15,16 @@ if (isset($_POST['add_user'])) {
     $role_id    = trim($_POST['role_id'] ?? '');
 
     if (!empty($first_name) && !empty($last_name) && !empty($email) && !empty($password) && !empty($role_id)) {
-        $db->addUser($first_name, $last_name, $email, $password, $role_id);
-        header("Location: /pages/roles/manage.php");
-        exit;
-    } else $message = "Veuillez remplir tous les champs.";
+        if ($db->getUserByEmail($email)) {
+            $message = "Cet email est déjà utilisé pour un autre utilisateur.";
+        } else {
+            $db->addUser($first_name, $last_name, $email, $password, $role_id);
+            header("Location: /pages/roles/manage.php");
+            exit;
+        }
+    } else {
+        $message = "Veuillez remplir tous les champs.";
+    }
 }
 ?>
 <!DOCTYPE html>
