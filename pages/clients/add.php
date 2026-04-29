@@ -13,11 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $address    = trim($_POST['address'] ?? '');
 
     if ($first_name && $last_name) {
-        $db->addClient($first_name, $last_name, $email, $phone, $address);
-
-        header("Location: index.php");
-        exit();
-    } else $message = "Veuillez remplir les champs obligatoires.";
+        if ($email && $db->getClientByEmail($email)) {
+            $message = "Cet email est déjà utilisé pour un autre client.";
+        } else {
+            $db->addClient($first_name, $last_name, $email, $phone, $address);
+            header("Location: index.php");
+            exit();
+        }
+    } else {
+        $message = "Veuillez remplir les champs obligatoires.";
+    }
 }
 ?>
 <!DOCTYPE html>
